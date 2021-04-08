@@ -11,7 +11,6 @@ export async function getCollegeById(id) {
     }
   });
   data = JSON.parse(data.data.data);
-  console.log(data);
   return {
     name: data['institution name'],
     location: `${data['HD2019.City location of institution']}, ${stateAbrv[data['HD2019.State abbreviation']]}`,

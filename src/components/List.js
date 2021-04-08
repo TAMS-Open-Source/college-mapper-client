@@ -12,7 +12,6 @@ import grab from 'assets/grab.png';
 
 function List() {
   const { list, setList, setShowList } = React.useContext(ControlContext);
-  console.log(list)
 
   function onSort(thing) {
     const ids = thing.map(thing => thing.content.props.id);

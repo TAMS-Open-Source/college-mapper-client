@@ -63,7 +63,6 @@ function Card({ setShowDropdown }) {
     if (user && user.uid) {
       db.ref(`user/${user.uid}/emoji`).once('value', res => {
         const data = res.val();
-        console.log(data)
         if (data !== null) {
           setEmojiChoice(data);
         } else {

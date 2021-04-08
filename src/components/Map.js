@@ -64,7 +64,6 @@ function MapView() {
         setColleges(colleges);
       });
     } else {
-      console.log(Rankings[filter])
       setColleges(Rankings[filter])
     }
   }, [bounds, filter])

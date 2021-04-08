@@ -25,13 +25,14 @@ export async function getSummary(name) {
 const BAD_LINKS = [
   'https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg',
   'https://upload.wikimedia.org/wikipedia/en/5/5f/Disambig_gray.svg',
-  'https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg'
+  'https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg',
+  'https://upload.wikimedia.org/wikipedia/commons/6/65/Black_sphere.svg'
 ]
 
 export async function getImages(name) {
   try {
     const links = await Wiki.page(name).then(page => page.images());
-    return links.filter(link => !BAD_LINKS.includes(link)).slice(0, 4).reverse();
+    return links.filter(link => !BAD_LINKS.includes(link) && !link.includes('svg')).slice(0, 4).reverse();
   } catch(err) {
     return null;
   }

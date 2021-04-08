@@ -11,7 +11,7 @@ export async function getSummary(name) {
     }
     return splitSummary;
   });
-  const url = await wiki().page(name).then(page => page.url());
+  const url = await Wiki.page(name).then(page => page.url());
   return {
     summary: summary,
     url: url

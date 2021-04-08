@@ -3,20 +3,38 @@ import 'assets/CollegeInformation.css'; // style kept in raw css file (default)
 import { FaMapMarkerAlt, FaUserFriends, FaChevronRight } from "react-icons/fa";
 import styled from 'styled-components';
 import Loader from "react-loader-spinner";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+import { Carousel } from 'react-responsive-carousel';
 
 import { signInWithGoogle } from 'util/firebase';
 import { getCollegeById } from 'util/api';
 import COLORS from 'util/colors';
 import ControlContext from 'util/controlContext';
-import { getSummary } from 'util/wiki';
+import { getSummary, getImages } from 'util/wiki';
 import roundPop from 'util/roundPop';
 
 function CollegeInformation({ id }) {
   const [info, setInfo] = useState();
   const [description, setDescription] = useState();
   const [added, setAdded] = useState(false);
+  const [images, setImages] = useState(null);
 
   useEffect(() => {
+    if (info && info.name) {
+      getImages(info.name).then(images => {
+        if (images) {
+          if (images.length > 0) {
+            setImages(images);
+          } else {
+            setImages(null);
+          }
+        }
+      })
+    }
+  }, [info])
+
+  useEffect(() => {
+    setImages(null);
     getCollegeById(id).then(info => {
       setInfo(info);
     })
@@ -117,6 +135,18 @@ function CollegeInformation({ id }) {
 
         <div>
           <h2 className="CollegeInformationBottomBorder">Description</h2>
+          {images && <Carousel
+            autoPlay={true}
+            interval={5000}
+            infiniteLoop={true}
+            showStatus={false}
+            showThumbs={false}
+          >
+            {images && images.map(link => {
+              return <CollegeImage src={link} />
+            })}
+          </Carousel>
+          }
           {!description && <div style={{
             display: 'flex',
             justifyContent: 'center'
@@ -141,6 +171,11 @@ function CollegeInformation({ id }) {
     </Handler>
   );
 }
+
+const CollegeImage = styled.img`
+  height: 200px;
+  object-fit: contain;
+`
 
 const Handler = styled.div`
   position: absolute;

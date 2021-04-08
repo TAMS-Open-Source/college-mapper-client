@@ -67,7 +67,7 @@ function Popup(props) {
   }
 
   useEffect(() => {
-    if (name && location && population) {
+    if (name && location && population && marker && marker.target && marker.target.getPopup()) {
       marker.target.getPopup().update()
     }
   }, [name, location, population])

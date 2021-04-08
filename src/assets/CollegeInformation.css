@@ -1,0 +1,103 @@
+.CollegeInformation {
+	height: 100vh;
+	width: 400px;
+	border-style: none;
+	border-width: 2px;
+	padding: 20px;
+	box-sizing: border-box;
+	border-radius: 15px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: white;
+	overflow-y: scroll;
+}
+
+.CollegeInformationPopAndLoc {
+	font-size: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-right: 10px;
+
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+	border-radius: 20px;
+
+	padding-bottom: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 5px;
+
+	background: black;
+	color: white;
+	text-align: left;
+}
+
+.CollegeInformationPeopleIcon {
+	padding-left: left;
+	padding-right: 5px;
+	vertical-align: middle;
+}
+
+.CollegeInformationPinIcon {
+	vertical-align: middle;
+	padding-right: 5px;
+}
+
+.CollegeInformationLoc {
+	float: right;
+}
+
+.CollegeInformationBottomBorder {
+	border-bottom-style: solid;
+	border-bottom-width: 3px;
+	border-bottom-color: black;
+	padding-right: 20px;
+}
+
+.CollegeInformationLeft {
+	text-align: left;
+	font-size: 20px;
+}
+
+.CollegeInformationRight {
+	font-size: 20px;
+	float: right;
+	font-weight: bold;
+}
+
+.CollegeInformationButton {
+	font-weight: bold;
+	background-color: #3be39a; /*turquoise-y*/
+	border: none;
+	border-radius:15px;
+	color:white;
+	padding: 15px 20px;
+	text-align:center;
+	font-size: 28px;
+	margin-top: 30px;
+	
+}
+
+.CollegeInformationButton:hover {
+	background: #45d194;
+  cursor: pointer;
+}
+
+.CollegeInformationButton:focus { 
+  outline: none; 
+}
+
+.description {
+	font-size: 15px;
+}
+
+.CollegeInformationButtonHelper {
+	bottom: 0;
+	padding-bottom: 10px;
+	position:sticky;
+	display:flex;
+	justify-content: flex-end;
+}

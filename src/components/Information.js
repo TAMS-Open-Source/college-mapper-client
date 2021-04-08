@@ -4,6 +4,7 @@ import { FaMapMarkerAlt, FaUserFriends, FaChevronRight } from "react-icons/fa";
 import styled from 'styled-components';
 import Loader from "react-loader-spinner";
 
+import { signInWithGoogle } from 'util/firebase';
 import { getCollegeById } from 'util/api';
 import COLORS from 'util/colors';
 import ControlContext from 'util/controlContext';
@@ -21,7 +22,7 @@ function CollegeInformation({ id }) {
     })
   }, [id]);
 
-  const { setCurrentId, list, addToList } = React.useContext(ControlContext);
+  const { setCurrentId, list, addToList, user } = React.useContext(ControlContext);
 
   function clearId() {
     setCurrentId(null);
@@ -49,7 +50,11 @@ function CollegeInformation({ id }) {
   }, [id])
 
   function onAddPressed() {
-    addToList(id);
+    if (user) {
+      addToList(id);
+    } else {
+      signInWithGoogle();
+    }
   }
 
   if (!id) {

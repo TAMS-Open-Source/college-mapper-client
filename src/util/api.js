@@ -4,6 +4,8 @@ const axios = require('axios');
 
 const URL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000/' : 'https://college-mapper-api.herokuapp.com/';
 
+// const URL = 'https://college-mapper-api.herokuapp.com/';
+
 export async function getCollegeById(id) {
   let data = await axios.get(`${URL}/college`, {
     params: {
@@ -11,6 +13,7 @@ export async function getCollegeById(id) {
     }
   });
   data = JSON.parse(data.data.data);
+  console.log(data);
   return {
     name: data['institution name'],
     location: `${data['HD2019.City location of institution']}, ${stateAbrv[data['HD2019.State abbreviation']]}`,

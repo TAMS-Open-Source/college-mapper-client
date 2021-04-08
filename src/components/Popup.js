@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FiPlus, FiSearch, FiCheck } from 'react-icons/fi';
 import { IoLocationSharp, IoPeopleSharp } from 'react-icons/io5';
+import Loader from 'react-loader-spinner';
 
 import { signInWithGoogle } from 'util/firebase';
 import COLORS from 'util/colors';
@@ -12,7 +13,7 @@ import ControlContext from 'util/controlContext';
 
 function Popup(props) {
   // onMore is a callback to let the map zoom when 'more' is clicked
-  const { id, onMore } = props;
+  const { id, onMore, marker } = props;
   // this information is used to control things that affect the whole application
   const { setCurrentId, addToList, setShowList, list, user } = React.useContext(ControlContext);
 
@@ -63,6 +64,24 @@ function Popup(props) {
     if (id) {
       setCurrentId(id);
     }
+  }
+
+  useEffect(() => {
+    if (name && location && population) {
+      marker.target.getPopup().update()
+    }
+  }, [name, location, population])
+
+  if (!name || !location || !population) {
+    return (
+      <Wrapper>
+        <Loader 
+          type="Oval"
+          color={COLORS.BLUE}
+          width={50}
+        />  
+      </Wrapper>
+    )
   }
 
   return (
@@ -150,6 +169,7 @@ const AddButton = styled.div`
   &:hover {
     cursor: pointer;
   }
+  margin-right: 10px;
 `
 // INFO DIVS
 const Population = styled.div`

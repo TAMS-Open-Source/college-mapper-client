@@ -19,6 +19,7 @@ function MapView() {
   const [currentLoc, setCurrentLoc] = useState(DEFAULT_LOCATION)
   const [zoom, setZoom] = useState(5);
   const [map, setMap] = useState()
+  const [marker, setMarker] = useState();
   const [bounds, setBounds] = useState()
   const [colleges, setColleges] = useState([]);
   const { filter } = React.useContext(ControlContext);
@@ -101,15 +102,16 @@ function MapView() {
           eventHandlers={{
             mouseover: (e) => {
               e.target.openPopup();
+              setMarker(e);
             }
           }}
         >
-          <Popup maxWidth={"250"} autoPan={false}>
+          <Popup maxWidth={"auto"} autoPan={false}>
             <CustomPopup id={college.unitid} onMore={() => {
               if (map) {
                 map.flyTo([college.lat, college.lon], 14)
               }
-            }}/>
+            }} marker={marker}/>
           </Popup>
         </Marker>
       ))}

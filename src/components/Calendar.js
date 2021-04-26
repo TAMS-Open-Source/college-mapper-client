@@ -209,7 +209,6 @@ const DateInput = styled.input`
 `
 
 function UpcomingElements({ dates }) {
-  let months = [...new Set(dates.map(date => date.month))];
   const currentMonth = (new Date()).getMonth();
 
   function generateMonthArr() {
@@ -244,6 +243,7 @@ function UpcomingElements({ dates }) {
       )})
   )
 }
+
 const DeleteText = styled.span`
   color: red;
   text-decoration: underline;
@@ -303,7 +303,6 @@ const RightView = styled.div`
     display: none;
   }
 `
-
 const LeftView = styled.div`
   height: 100%;
   display: flex;
@@ -311,7 +310,6 @@ const LeftView = styled.div`
   justify-content: space-between;
   width: 70%;
 `
-
 const ImportantDates = styled.div`
   display: flex;
   justify-content: center;
@@ -329,11 +327,9 @@ const ImportantDates = styled.div`
 const MonthDay = styled.div`
   font-size: 50px;
 `
-
 const MonthName = styled.div`
   font-size: 18px;
 `
-
 const DateSpecification = styled.div`
   width: 30%;
   display: flex;
@@ -342,7 +338,6 @@ const DateSpecification = styled.div`
   justify-content: center;
   border-right: 2px solid black;
 `
-
 const BottomView = styled.div`
   border-top: 2px solid black;
   display: flex;
@@ -351,14 +346,12 @@ const BottomView = styled.div`
   align-self: flex-end;
   height: 110px;
 `
-
 const CalView = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   padding: 30px;
 `
-
 const MonthDiv = styled.div`
   display: flex;
   align-items: center;
@@ -381,7 +374,6 @@ const Triangle = styled(BsTriangleFill)`
     cursor: pointer;
   }
 `
-
 const EL_WIDTH = 45;
 const EL_RAD = 15;
 const DateElement = styled.div`
@@ -411,13 +403,11 @@ const EmptyElement = styled.div`
   border-radius: ${EL_RAD}px;
   background-color: #DDDDDD;
 `
-
 const DateGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   height: 100%;
 `
-
 const TopDiv = styled.div`
   background-color: ${COLORS.RED};
   height: 12px;
@@ -426,7 +416,6 @@ const TopDiv = styled.div`
   border-right: 3px solid black;
   width: 800px;
 `
-
 const CALENDAR_RADIUS = 70;
 const CalendarDiv = styled.div`
   height: 550px;
@@ -438,14 +427,12 @@ const CalendarDiv = styled.div`
   display: flex;
   flex-direction: row;
 `
-
 const Title = styled.div`
   color: white;
   font-weight: 600;
   font-size: 80px;
   margin-bottom: 10px;
 `
-
 const GrayBg = styled.div`
   width: 100vw;
   height: 100vh;

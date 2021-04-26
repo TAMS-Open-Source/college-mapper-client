@@ -1,3 +1,5 @@
+// dates/seminal events that should always be present on the calendar
+
 export default [
   {
     name: 'Standard Early Action/Decision Deadline',

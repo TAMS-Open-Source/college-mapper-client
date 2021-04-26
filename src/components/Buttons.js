@@ -42,9 +42,7 @@ function PersonButton() {
     }} onClick={toggleDropdown}>
       <img src={person} />
     </Base>
-    {showDropdown && <>
-    <Card setShowDropdown={setShowDropdown}/>
-    </>}
+    {showDropdown && <Card setShowDropdown={setShowDropdown}/> }
     </>
   )
 }
@@ -52,14 +50,18 @@ function PersonButton() {
 const EMOJIS = ['😀', '🥸', '😎', '🤑']
 function Card({ setShowDropdown }) {
   
+  const { user, setShowList } = React.useContext(ControlContext);
   const [changeEmoji, setChangeEmoji] = useState(false);
   const [emojiChoice, setEmojiChoice] = useState(null);
   const [username, setUsername] = useState(null);
-  const { user, setShowList } = React.useContext(ControlContext);
   
   const notSignedIn = !user;
 
+  // handling the initial obtaining of the emoji data, whether from db or initiated from scratch
   useEffect(() => {
+    loadOrInitiateProfileEmoji();
+  }, [user]);
+  function loadOrInitiateProfileEmoji() {
     if (user && user.uid) {
       db.ref(`user/${user.uid}/emoji`).once('value', res => {
         const data = res.val();
@@ -70,15 +72,21 @@ function Card({ setShowDropdown }) {
         }
       })
     }
-  }, [user]);
-
+  }
+  // handling the relay of relevant changes to the database
   useEffect(() => {
+    dbUpdateEmojiChoiceIfChanged();
+  }, [user, emojiChoice]);
+  function dbUpdateEmojiChoiceIfChanged() {
     if (user && (emojiChoice !== null)) {
       db.ref(`user/${user.uid}/emoji`).set(emojiChoice);
     }
-  }, [user, emojiChoice]);
-
+  }
+  // handling the initial obtaining of username data, whether from db or initiated from scratch
   useEffect(() => {
+    loadOrInitiateUsername();
+  }, [user]);
+  function loadOrInitiateUsername() {
     if (user && user.uid) {
       db.ref(`user/${user.uid}/username`).once('value', res => {
         const data = res.val();
@@ -89,13 +97,16 @@ function Card({ setShowDropdown }) {
         }
       })
     }
-  }, [user]);
-
+  }
+  // handling the relay of relevant changes to the database
   useEffect(() => {
+    dbUpdateUsernameIfChanged();
+  }, [user, username]);
+  function dbUpdateUsernameIfChanged() {
     if (user && (username !== null)) {
       db.ref(`user/${user.uid}/username`).set(username);
     }
-  }, [user, username]);
+  }
 
   if (notSignedIn) {
     return (

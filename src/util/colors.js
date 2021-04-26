@@ -1,3 +1,5 @@
+// theme colors used throughout the app
+
 export default {
   TEAL: '#00DEA9',
   BLUE: '#065BA9',

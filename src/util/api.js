@@ -1,10 +1,10 @@
+// functions for interacting with the api
+
 import stateAbrv from './stateAbrv';
 
 const axios = require('axios');
 
 const URL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000/' : 'https://college-mapper-api.herokuapp.com/';
-
-// const URL = 'https://college-mapper-api.herokuapp.com/';
 
 export async function getCollegeById(id) {
   let data = await axios.get(`${URL}/college`, {
@@ -35,9 +35,6 @@ export async function getCollegesInBox(swLat, swLon, neLat, neLon) {
   return data.data.data;
 }
 
-/*
-Returns { name, location, population }
-*/
 export async function getShortCollegeById(id) {
   let data = await axios.get(`${URL}/short_college`, {
     params: {
@@ -50,8 +47,4 @@ export async function getShortCollegeById(id) {
     location: data['city_and_state'],
     population: data['DRVEF122019.12-month full-time equivalent enrollment: 2018-19']
   }
-}
-
-if (require.main === module) {
-  getCollegesInBox(33.2, -97.6, 42.36, -71.1).then(res => console.log(res));
 }

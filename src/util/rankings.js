@@ -1,3 +1,6 @@
+/*
+This file holds a list of hardcoded lists of top colleges for different categories/disciplines.
+*/
 
 // Lists top 10
 // https://www.usnews.com/best-graduate-schools/top-science-schools/computer-programming-rankings

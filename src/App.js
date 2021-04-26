@@ -9,6 +9,8 @@ import Calendar from 'components/Calendar';
 import CollegeInformation from 'components/Information';
 import BugFixMessage from 'components/BugFixMessage';
 import CollegeList from 'components/List';
+import AboutButton from 'components/AboutButton';
+import About from 'components/About';
 
 import ControlContext from 'util/controlContext';
 import { auth, db } from 'util/firebase';
@@ -16,6 +18,7 @@ import { ALL_COLLEGES } from 'util/filterChoices';
 
 function App() {
   const [showCalendar, setShowCalendar] = useState(false);
+  const [showAbout, setShowAbout] = useState(true);
   const [currentId, setCurrentId] = useState(null);
   const [user, setUser] = useState(null);
   const [list, setList] = useState(null);
@@ -23,6 +26,7 @@ function App() {
   const [filter, setFilter] = useState(ALL_COLLEGES);
 
   const toggleCalendar = () => setShowCalendar(!showCalendar);
+  const toggleAbout = () => setShowAbout(!showAbout);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -76,6 +80,8 @@ function App() {
       <CollegeInformation id={currentId} />
       {showCalendar && <Calendar />}
       <BugFixMessage />
+      <AboutButton onClick={toggleAbout} />
+      {showAbout && <About toggleAbout={toggleAbout} />}
     </ControlContext.Provider>
     </>
   );

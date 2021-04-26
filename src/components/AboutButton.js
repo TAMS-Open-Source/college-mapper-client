@@ -15,7 +15,7 @@ const ButtonBase = styled.div`
   right: 10px;
   bottom: 20px;
 
-  background-color: #FFFFFF70;
+  background-color: rgba(256, 256, 256, 0.8);
   font-size: 35px;
   font-weight: bold;
   height: ${WIDTH}px;

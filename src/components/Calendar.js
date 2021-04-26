@@ -99,7 +99,7 @@ function Calendar() {
 
   return (
     <GrayBg>
-      <XButton onClick={toggleCalendar} />
+      <InvisibleDiv onClick={toggleCalendar}></InvisibleDiv>
       <Title>My Calendar</Title>
       <TopDiv></TopDiv>
       <CalendarDiv>
@@ -176,6 +176,16 @@ function Calendar() {
     </GrayBg>
   )
 }
+const InvisibleDiv = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  &:hover {
+    cursor: pointer;
+  }
+`
 const SignInText = styled.span`
   font-weight: 600;
   color: ${COLORS.BLUE};
@@ -415,6 +425,7 @@ const TopDiv = styled.div`
   border-left: 3px solid black;
   border-right: 3px solid black;
   width: 800px;
+  z-index: 1;
 `
 const CALENDAR_RADIUS = 70;
 const CalendarDiv = styled.div`
@@ -426,12 +437,14 @@ const CalendarDiv = styled.div`
   border-bottom-right-radius: ${CALENDAR_RADIUS}px;
   display: flex;
   flex-direction: row;
+  z-index: 1;
 `
 const Title = styled.div`
   color: white;
   font-weight: 600;
   font-size: 80px;
   margin-bottom: 10px;
+  z-index: 1;
 `
 const GrayBg = styled.div`
   width: 100vw;

@@ -81,7 +81,7 @@ const TwoColumns = styled.div`
 `
 
 const View = styled.div`
-  background-color: #FFFFFF90;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 30px;
   width: 50%;
   box-sizing: border-box;
@@ -101,7 +101,7 @@ const Wrapper = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #00000060;
+  background-color: #00000080;
 
   display: flex;
   align-items: center;

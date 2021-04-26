@@ -49,6 +49,7 @@ const Handler = styled.div`
   right: 0;
   height: 100vh;
   width: 400px;
+  z-index: 1;
 `
 
 const Handle = styled.div`

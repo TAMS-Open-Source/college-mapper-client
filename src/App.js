@@ -18,7 +18,7 @@ import { ALL_COLLEGES } from 'util/filterChoices';
 
 function App() {
   const [showCalendar, setShowCalendar] = useState(false);
-  const [showAbout, setShowAbout] = useState(true);
+  const [showAbout, setShowAbout] = useState(false);
   const [currentId, setCurrentId] = useState(null);
   const [user, setUser] = useState(null);
   const [list, setList] = useState(null);
